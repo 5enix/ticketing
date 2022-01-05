@@ -1,0 +1,8 @@
+minikube start
+minikube addons enable ingress
+eval $(minikube docker-env)
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=sk_test_Ogq2Xe0BSLNsXxiNlmDojEc4
+kubectl expose deployment ingress-nginx-controller --target-port=80 --type=NodePort -n kube-system
+sudo lsof -i tcp:80
+
